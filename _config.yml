@@ -6,8 +6,8 @@ paginate:     1
 
 # About/contact
 author:
-  name:       Vanessa Sochat
-  url:        http://www.containers-ftw.org/SCI-F
+  name:       Singularityware
+  url:        https://www.github.com/singularityware
 
 # Gems
 gems:
