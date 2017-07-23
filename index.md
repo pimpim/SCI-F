@@ -1,8 +1,13 @@
-# Standard Container Integration Format
+---
+layout: default
+title: {{ site.name }}
+---
+
+# Introduction
 
 For quite some time, our unit of understanding has been based on the operating system. It is the level of magnification at which we understand data, software, and products of those two things. Recently, however, two needs have arisen:
 
- - We simeotaneously need **modularity** and **reproducible practices**. At first glance, these two things don't seem very contradictory. A modular piece of software, given that all dependencies are packaged nicely, is very reproducible. The problem arises because it's never the case that one software package can independently drive an entire solution. A single problem, whether it be sequencing genetic code, predicting prostate cancer reocurrence from highly dimensional data, or writing a bash script to play tetris, requires many disparate dependencies. Given our current level of understanding of information, the operating system, the best that we can do is give the user absolutely everything - a complete operating system with data, libraries, and software. But now for reproducibility we have lost modularity. We are producing heavy containers to serve a small amount of software, and each is a special snowflake. There are several problems with this practice:
+We simeotaneously need **modularity** and **reproducible practices**. At first glance, these two things don't seem very contradictory. A modular piece of software, given that all dependencies are packaged nicely, is very reproducible. The problem arises because it's never the case that one software package can independently drive an entire solution. A single problem, whether it be sequencing genetic code, predicting prostate cancer reocurrence from highly dimensional data, or writing a bash script to play tetris, requires many disparate dependencies. Given our current level of understanding of information, the operating system, the best that we can do is give the user absolutely everything - a complete operating system with data, libraries, and software. But now for reproducibility we have lost modularity. We are producing heavy containers to serve a small amount of software, and each is a special snowflake. There are several problems with this practice:
 
  1. Containers are not **consistent** to allow for comparison. Two containers with the same software installed in different locations do not obviously do the same thing, despite this being a possibility.
  2. Containers are not **transparent**. If i discover a container and do not have any prior knowledge or metadata, a known function may be completely concealed.
