@@ -87,18 +87,13 @@ a:hover { text-decoration: underline; }
     width: 100%; /* Full width */
 }
 
-.project-name { margin-top: 5px; margin-bottom: 0.1rem; color:#fff}
+.project-name { margin-top: 0px; margin-bottom: 0.1rem; color:#fff}
 @media screen and (min-width: 64em) { .project-name { font-size: 1.5rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .project-name { font-size: 1.5rem; } }
 @media screen and (max-width: 42em) { .project-name { font-size: 1.5rem; } }
 
-.project-tagline { margin-bottom: 2rem; font-weight: normal; opacity: 0.7; }
-@media screen and (min-width: 64em) { .project-tagline { font-size: 1.25rem; } }
-@media screen and (min-width: 42em) and (max-width: 64em) { .project-tagline { font-size: 1.15rem; } }
-@media screen and (max-width: 42em) { .project-tagline { font-size: 1rem; } }
-
-.main-content { word-wrap: break-word; }
-.main-content :first-child { margin-top: 100px; }
+.main-content { word-wrap: break-word;}
+.main-content :first-child { margin-top: 0; }
 @media screen and (min-width: 64em) { .main-content { max-width: 80rem; padding: 50px; margin: 0 auto; font-size: 1.3rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .main-content { padding: 2rem 4rem; font-size: 1.3rem; } }
 @media screen and (max-width: 42em) { .main-content { padding: 2rem 1rem; font-size: 1rem; } }
