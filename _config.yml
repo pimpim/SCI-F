@@ -3,6 +3,7 @@ title:        Standard Container Integration Format
 tagline:      ""
 baseurl:      "/SCI-F"
 paginate:     1
+github:       "https://www.github.com/containers-ftw/SCI-F"
 
 # About/contact
 author:
