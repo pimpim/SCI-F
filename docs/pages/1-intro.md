@@ -110,33 +110,5 @@ SCI-F will accomplish these goals by way of duplicating the current singularity 
  
 
 ### Modularity
-A container with distinct, predictable locations for software modules and data is modular. The organization of these modules under a common root ensures that each carries a unique name. Further, this structure allows for easy movement of modules between containers. If a modular carries with it information about installation and dependencies, it could easily be installed in another container. To the user, this could even look like a copy command:
+A container with distinct, predictable locations for software modules and data is modular. The organization of these modules under a common root ensures that each carries a unique name. Further, this structure allows for easy movement of modules between containers. If a modular carries with it information about installation and dependencies, it could easily be installed in another container.
 
-```
-singularity cp foo container-source.img container-dest.img
-```
-
-Given a recipe (perhaps within a module folder on the host called foo) we could also imagine an installation command to occur that is external (after) an original build (by way of bootstrap):
-
-```
-singularity install foo container-source.img
-
-```
-
-And this would allow for users to store a set of re-used bases, and then add custom changes or modules onto them. For example, I could generate images with the same modules (but different bases) to test for differences based on the operating system:
-
-```
-cp ubuntu.img ubuntu-foo.img
-cp centos.img centos-foo.img
-singularity install foo ubuntu-foo.img
-singularity install foo centos-foo.img
-```
-
-or use a common image for an operating system to generate images for different purposes all together:
-
-```
-cp ubuntu.img ubuntu-foo.img
-cp ubuntu.img ubuntu-bar.img
-singularity install foo ubuntu-foo.img
-singularity install bar ubuntu-bar.img
-```
