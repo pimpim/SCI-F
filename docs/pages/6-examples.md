@@ -394,10 +394,10 @@ sra-toolkit
 
 Each of the above apps can be used with commands “run", “exec," “inspect," “shell," or “test" to run the container in context of a particular app. This means sourcing app-specific environment variables, and adding executables associated with the app to the path. For example, I can use a simple app “python" to open the python interpreter in the container, or shell into the container to test bwa:
 
-# Open interactive python
+##### Open interactive python
 singularity run --app python carrierseq.dev.img
 
-# Load container with bwa on path
+##### Load container with bwa on path
 $ singularity shell --app bwa carrierseq.dev.img
 $ which bwa
 $ /scif/apps/bwa/bin/bwa

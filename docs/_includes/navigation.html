@@ -12,17 +12,17 @@
                 <ul class="dl-menu">
                         {% for main in site.data.toc %}
 			<li>
-                            <a href="{{ main.url }}" id="{{ main.slug }}">{{ main.title }}</a>
+                            <a href="{{ main.url }}">{{ main.title }}</a>
 
                             {% if main.sections %}
                                 <ul class="dl-submenu">
                                 {% for section in main.sections %}
                                     <li>
-		                        <a href="{{ section.url }}" id="{{ section.slug }}">{{ section.title }}</a>
+		                        <a href="{{ main.url }}#{{ section.slug }}">{{ section.title }}</a>
                                         {% if section.subsections %}
                                             <ul class="dl-submenu">
                                             {% for subsection in section.subsections %}
-                                                <li><a href="{{ subsection.url }}" id="{{ subsection.slug }}">{{ subsection.title }}</a></li>
+                                                <li><a href="{{ main.url }}#{{ subsection.slug }}">{{ subsection.title }}</a></li>
                                             {% endfor %}
                                             </ul>
                                          {% endif %}
@@ -43,7 +43,6 @@ $(function() {
     $( '#dl-menu' ).dlmenu();
   
   $(window).scroll(function () {
-      console.log($(window).scrollTop())
     if ($(window).scrollTop() > 280) {
       $('#toc').addClass('navbar-fixed');
     }

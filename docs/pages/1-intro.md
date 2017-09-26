@@ -29,6 +29,7 @@ Based on these problems, it is clear that we need direction and guidance on how 
 
 
 ## Goals
+
 The Standard Container Integration Format (SCI-F) establishes an overall goal to make containers consistent, transparent, parseable, and internally modular.  Using Singularity, we start with an encapsulated environment that includes packaged software and data modules, making it reproducible because all dependencies are included. SCI-F improves upon this base, and we assert that for a container to conforms to SCI-F, it must:
 
  - be consistent to allow for comparison. I am able to easily discover relevant software and data for one or more applications defined by the container creator.
@@ -40,6 +41,7 @@ To be clear, this is *not* a specification for a container image [cite], or a wo
 
 
 ### Consistency
+
 Given the case of two containers with the same software installed, it should be the case that the software is always found in the same location. Further, it should be the case that the data (inputs and outputs) that is used and generated at runtime is also located in a consistent manner. To achieve this goal, SCI-F defines a new root folder,  /scif, chosen to be named to have minimal conflict with existing cluster resources. Under this folder are separate folders for each of software modules (/scif/apps), and data (/scif/data) where the container generation software should generate subfolders for each modular application installed. For example, a container with applications foo and bar would have them installed as follows:
 
 ```
@@ -62,6 +64,7 @@ Thus, a container in a workflow that knows to execute the foo application would 
 
 
 ### Transparency
+
 Arguably, when we want to know about a container's intended use, we don't care so much for the underlying operating system. We would want to subtract out this base first, and then glimpse at what remains. Given the consistent organization above, and importantly, a distinction between container base operating system (for example, software in /bin, /sbin, or even sometimes /opt, we can easily determine the container's additional software with a simple list command:
 
 ```
@@ -100,6 +103,7 @@ RUNNING FOO
 Another reason to advocate for an organization that is different from most base operating systems is because of mounting. A cluster onto which a container is mounted should be able to (in advance) know the paths that are allowed (/scif/apps) and (/scif/data) and not have these interfere with possibly software that already exists (and might be needed) on the cluster (e.g., /opt).
 
 ### Parsability
+
 Parsability comes down to programmatic accessibility. This means that, for each software module installed, we need to be able to (easily) do the following:
 
 provide an entrypoint (e.g., the current "runscript" for a Singularity container, or the Dockerfile `ENTRYPOINT` and `CMD` serve this purpose). We arguably need the different software modules within the container to each provide an entrypoint.
@@ -110,5 +114,5 @@ SCI-F will accomplish these goals by way of duplicating the current singularity 
  
 
 ### Modularity
-A container with distinct, predictable locations for software modules and data is modular. The organization of these modules under a common root ensures that each carries a unique name. Further, this structure allows for easy movement of modules between containers. If a modular carries with it information about installation and dependencies, it could easily be installed in another container.
 
+A container with distinct, predictable locations for software modules and data is modular. The organization of these modules under a common root ensures that each carries a unique name. Further, this structure allows for easy movement of modules between containers. If a modular carries with it information about installation and dependencies, it could easily be installed in another container.
