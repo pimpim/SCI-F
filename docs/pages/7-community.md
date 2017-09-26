@@ -50,3 +50,8 @@ Given separation of the software from the host, we can more easily derive featur
 
 ### Artificial Intelligence (AI) Generated Containers
 Given some functional goal, and given a set of containers with measurable features to achieving it, we can (either by brute force or more elegantly) programmatically generate and test containers toward some metric. The landscape of containers can easily be pruned in that the best containers for specific use cases can be easily determined automatically.
+
+<div>
+    <a href="/SCI-F/examples.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
+    <a href="/SCI-F/appendix.html"><button class="next-button btn btn-primary"><i class="fa fa-chevron-right"></i> </button></a>
+</div><br>

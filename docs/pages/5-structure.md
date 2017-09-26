@@ -224,3 +224,8 @@ A software or data module, in its sparsest state, is a folder of files with a na
 - org.label-schema.build-date: the date when the container was generated, or the software module was added.
 
 The metadata about dependencies and steps to create the software would be represented in the `%appinstall`, which is by default saved with each container. Metadata about different environment variables would go into `%appenv`, and labels that should be accessible statically go into `%applabels`. Help for the user is provided under `%apphelp`.
+
+<div>
+    <a href="/SCI-F/tools.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
+    <a href="/SCI-F/examples.html"><button class="next-button btn btn-primary"><i class="fa fa-chevron-right"></i> </button></a>
+</div><br>

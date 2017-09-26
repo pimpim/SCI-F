@@ -41,3 +41,7 @@ The Standard Container Integration Format is advantageous in that the container 
  - https://github.com/TANGO-Project/alde#application-lifecycle-deployment-engine-alde
  - https://figshare.com/articles/Orchestration_and_Workflows_in_eScience_Problems_Standards_and_Solutions/4746931
 
+
+<div>
+    <a href="/SCI-F/community.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
+</div><br>

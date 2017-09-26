@@ -45,3 +45,8 @@ Functional assessment also carries a non-trivial amount of work for the common s
 
 ### Modular Assessment
 An enhancement to functional assessment would be having the ability to associate different choices of software and protocol to the differences in outcomes that we see. This leads to the need for the final method for assessment, an assessment driven by container organization and content. If we have confidence in the container structure and content, we can deploy a metric and then have confidence about the subtle differences that we see. For example, a single container might be used to provide ten different implementations of a sorting algorithm, the algorithms run on the same input data, and the results produced with various runtime metrics. We might programatically parse over scripts and dependencies to run each metric by way of the filesystem and build recipe, and better understand differences in performance. A "competitive container" might be defined to answer a specific scientific question, with a pre-defined metric of goodness, and scientists instructed to write the missing module to complete it. SCI-F allows the container creator to be creative in terms of how the internal modules are used.
+
+<div>
+    <a href="/SCI-F/practices.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
+    <a href="/SCI-F/structure.html"><button class="next-button btn btn-primary"><i class="fa fa-chevron-right"></i> </button></a>
+</div><br>

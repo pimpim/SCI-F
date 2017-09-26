@@ -867,3 +867,8 @@ An important attribute of having modular software apps is that it allows for sep
 
 ## Auditing and Logging
 A systems administration that builds and provides containers for his or her users might want to enforce running with a standard for logging and auditing. Instead of asking the researcher to write this into his or her custom runscript, the snippet to perform the logging could be added as a SCI-F app dynamically at build time, and then the container run with this context.
+
+<div>
+    <a href="/SCI-F/structure.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
+    <a href="/SCI-F/community.html"><button class="next-button btn btn-primary"><i class="fa fa-chevron-right"></i> </button></a>
+</div><br>

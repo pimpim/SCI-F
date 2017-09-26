@@ -3,7 +3,6 @@ layout: default
 title: Container Modules
 pdf: true
 permalink: /modules
-toc: true
 ---
 
 # Modules
@@ -15,3 +14,8 @@ Modularity can be understood as the level of dimensionality that a user is instr
  - `Development Module`: Containers can also serve modules that are represented at the ideal level for development. For this example, instead of providing the container as a node, or actions inside like "mapping", the smallest units of software are exposed, such as the executables `bwa` and `samtools`. It would be likely that a researcher developing a scientific pipeline would find this useful.
 
 From the above example, we see that there is no correct level of dimensionality to define a module - it is entirely based on the needs of the creator and user. In this case, what is needed is an ability for the creator of a container to implicitly define this level of usage simply by way of creating the container. SCI-F allows us to do this. We can define modules on the levels of single files, or groups of software to perform a task. The metadata and organization of our preferences is automatically generated to create a complete, and programmatically understandable software package or scientific analysis.
+
+<div>
+    <a href="/SCI-F/intro.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
+    <a href="/SCI-F/practices.html"><button class="next-button btn btn-primary"><i class="fa fa-chevron-right"></i> </button></a>
+</div><br>

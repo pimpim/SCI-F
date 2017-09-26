@@ -69,13 +69,36 @@ a { color: #1e6bb8; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 .btn { cursor:pointer; display: inline-block; margin-bottom: 1rem; color: #333; background-color: #CCC; border-color: rgba(255, 255, 255, 0.2); border-style: solid; border-width: 1px; border-radius: 0.3rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
-.btn:hover { color: #444; text-decoration: none; background-color: #444; border-color: rgba(255, 255, 255, 0.3); }
+.btn:hover { color: #444; text-decoration: none; background-color: #159958; border-color: rgba(255, 255, 255, 0.3); }
 .btn + .btn { margin-left: 1rem; }
 @media screen and (min-width: 64em) { .btn { padding: 0.75rem 1rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .btn { padding: 0.6rem 0.9rem; font-size: 0.9rem; } }
 @media screen and (max-width: 42em) { .btn { display: block; width: 100%; padding: 0.75rem; font-size: 0.9rem; }
   .btn + .btn { margin-top: 1rem; margin-left: 0; } }
 
+.next-button {
+  color: #999; 
+  border-radius:50px; 
+  float:right; 
+  max-height:55px;
+
+}
+.next-button:hover {
+  color: yellow !important;
+
+}
+
+.previous-button {
+  color: #999; 
+  border-radius:50px; 
+  float:left; 
+  max-height:55px;
+
+}
+.previous-button:hover {
+  color: yellow !important;
+
+}
 
 .page-header {
     background-color: #159957;

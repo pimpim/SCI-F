@@ -117,3 +117,9 @@ SCI-F will accomplish these goals by way of duplicating the current singularity 
 ### Modularity
 
 A container with distinct, predictable locations for software modules and data is modular. The organization of these modules under a common root ensures that each carries a unique name. Further, this structure allows for easy movement of modules between containers. If a modular carries with it information about installation and dependencies, it could easily be installed in another container.
+
+
+<div>
+    <a href="/SCI-F/"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
+    <a href="/SCI-F/modules.html"><button class="next-button btn btn-primary"><i class="fa fa-chevron-right"></i> </button></a>
+</div><br>
