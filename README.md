@@ -10,6 +10,6 @@ Development of this document included the following:
 - Create a web interface with testing and documentation for SCI-F for apps [containers-ftw.github.io/apps](https://containers-ftw.github.io/apps)
 - Collect and implement real world use cases and examples for SCI-F
 
-A list of [AUTHORS](../AUTHORS.md) is provided, and we welcome and encourage discussion around SCi-F and requests for change via version controlled pull requests and [issues](https://www.github.com/containers-ftw/SCI-F/issues).
+A list of [AUTHORS](https://github.com/containers-ftw/SCI-F/blob/master/AUTHORS.md) is provided, and we welcome and encourage discussion around SCi-F and requests for change via version controlled pull requests and [issues](https://www.github.com/containers-ftw/SCI-F/issues).
 
 ![http://standards.ieee.org/images/openstand/128x128-black1.png](http://standards.ieee.org/images/openstand/128x128-black1.png)
