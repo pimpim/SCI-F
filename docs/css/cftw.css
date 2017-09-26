@@ -83,6 +83,7 @@ a:hover { text-decoration: underline; }
   max-height:55px;
 
 }
+
 .next-button:hover, 
 .next-button:active, 
 .next-button:focus, 
@@ -97,6 +98,7 @@ a:hover { text-decoration: underline; }
   border-radius:50px; 
   float:left; 
   max-height:55px;
+}
 
 .page-header {
     background-color: #159957;
