@@ -83,9 +83,13 @@ a:hover { text-decoration: underline; }
   max-height:55px;
 
 }
-.next-button:hover {
+.next-button:hover, 
+.next-button:active, 
+.next-button:focus, 
+.previous-button:active,
+.previous-button:focus,
+.previous-button:hover {
   color: yellow !important;
-
 }
 
 .previous-button {
@@ -93,12 +97,6 @@ a:hover { text-decoration: underline; }
   border-radius:50px; 
   float:left; 
   max-height:55px;
-
-}
-.previous-button:hover {
-  color: yellow !important;
-
-}
 
 .page-header {
     background-color: #159957;
