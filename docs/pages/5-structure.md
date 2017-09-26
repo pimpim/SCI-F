@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Structure of the Standard Container Integration Format
+pdf: true
+permalink: /structure
 ---
 
 # Structure of the Standard Container Integration Format

@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Introduction
+pdf: true
+permalink: /intro
 ---
 
 # Introduction

@@ -1,10 +1,12 @@
 ---
 layout: default
 title: {{ site.name }}
+pdf: true
+permalink: /
 ---
 
 <div style="float:right; margin-bottom:50px; color:#666">
-Version: 0.1<br>
+Version: {{ site.version }}<br>
 Date: 2017-xx-xx
 </div>
 

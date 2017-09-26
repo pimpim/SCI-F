@@ -4,140 +4,140 @@
 
   - title: Introduction
     slug: intro
-    url: /SCI-F/pages/intro.html
+    url: /SCI-F/intro.html
     sections:
       - title: Goals
-        url: /SCI-F/pages/intro.html#goals
+        url: /SCI-F/intro.html#goals
         slug: goals
         subsections:
           - title: Consistency
-            url: /SCI-F/pages/intro.html#consistency
+            url: /SCI-F/intro.html#consistency
             slug: consistency
           - title: Transparency
-            url: /SCI-F/pages/intro.html#transparency
+            url: /SCI-F/intro.html#transparency
             slug: transparency
           - title: Modularity
-            url: /SCI-F/pages/intro.html#modularity
+            url: /SCI-F/intro.html#modularity
             slug: modularity
 
   - title: Container Modules
-    url: "/SCI-F/pages/modules.html"
+    url: "/SCI-F/modules.html"
     slug: modules
 
   - title: Reproducible Practices
-    url: "/SCI-F/pages/practices.html"
+    url: "/SCI-F/practices.html"
     slug: practices
 
   - title: Integrations and Tools
-    url: "/SCI-F/pages/tools.html"
+    url: "/SCI-F/tools.html"
     slug: tools
     sections:
       - title: Container Bases
-        url: /SCI-F/pages/tools.html#bases
+        url: /SCI-F/tools.html#bases
         slug: bases
       - title: Container Assessment
-        url: /SCI-F/pages/tools.html#assess
+        url: /SCI-F/tools.html#assess
         slug: assess
         subsections:
           - title: Manual Annotation
-            url: /SCI-F/pages/tools.html#manual-annotation
+            url: /SCI-F/tools.html#manual-annotation
             slug: manual-annotation
           - title: Functional Assessment
-            url: /SCI-F/pages/tools.html#functional-assess
+            url: /SCI-F/tools.html#functional-assess
             slug: functional-assess
           - title: Modular Assessment
-            url: /SCI-F/pages/tools.html#modular-assess
+            url: /SCI-F/tools.html#modular-assess
             slug: modular-assess
 
   - title: Structure of the SCI-F
-    url: "/SCI-F/pages/structure.html"
+    url: "/SCI-F/structure.html"
     slug: structure
     sections:
       - title: Traditional File Organization
-        url: /SCI-F/pages/structure.html#traditional
+        url: /SCI-F/structure.html#traditional
         slug: traditional
         subsections:
           - title: Do Not Touch
-            url: /SCI-F/pages/structure.html#no-touch
+            url: /SCI-F/structure.html#no-touch
             slug: no-touch
           - title: Variable and Working Locations
-            url: /SCI-F/pages/structure.html#working
+            url: /SCI-F/structure.html#working
             slug: working
           - title: Connections
-            url: /SCI-F/pages/structure.html#connections
+            url: /SCI-F/structure.html#connections
             slug: connections
       - title: SCI-F File Organization
-        url: /SCI-F/pages/structure.html#scif
+        url: /SCI-F/structure.html#scif
         slug: scif
         subsections:
           - title: Apps
-            url: /SCI-F/pages/structure.html#apps
+            url: /SCI-F/structure.html#apps
             slug: apps
           - title: Data
-            url: /SCI-F/pages/structure.html#data
+            url: /SCI-F/structure.html#data
             slug: data
           - title: Environment Variables
-            url: /SCI-F/pages/structure.html#envar
+            url: /SCI-F/structure.html#envar
             slug: envar
           - title: Interaction
-            url: /SCI-F/pages/structure.html#interact
+            url: /SCI-F/structure.html#interact
             slug: interact
           - title: Metadata
-            url: /SCI-F/pages/structure.html#metadata
+            url: /SCI-F/structure.html#metadata
             slug: metadata
 
   - title: Example Use Cases
-    url: "/SCI-F/pages/examples.html"
+    url: "/SCI-F/examples.html"
     slug: examples
     sections:
       - title: Modular Software Evaluation
-        url: /SCI-F/pages/examples.html#modular-evalulation
+        url: /SCI-F/examples.html#modular-evalulation
         slug: modular-evalulation
       - title: Modular Metrics Evaluation
-        url: /SCI-F/pages/examples.html#metrics-evalulation
+        url: /SCI-F/examples.html#metrics-evalulation
         slug: metrics-evalulation
         subsections:
           - title: "Metric Example 1: Evaluate software across different metrics"
-            url: /SCI-F/pages/examples.html#example1
+            url: /SCI-F/examples.html#example1
             slug: example1
           - title: "Metric Example 2: Custom Functions and Metrics"
-            url: /SCI-F/pages/examples.html#example2
+            url: /SCI-F/examples.html#example2
             slug: example2      
           - title: "Metric Example 3: Code Quality and Linting"
-            url: /SCI-F/pages/examples.html#example3
+            url: /SCI-F/examples.html#example3
             slug: example3
           - title: "Metric Example 4: Runtime Evaluation"
-            url: /SCI-F/pages/examples.html#example4
+            url: /SCI-F/examples.html#example4
             slug: example4
       - title: Contextual Running
-        url: /SCI-F/pages/examples.html#context
+        url: /SCI-F/examples.html#context
         slug: context
       - title: Scientific Workflows
-        url: /SCI-F/pages/examples.html#scientific-workflows
+        url: /SCI-F/examples.html#scientific-workflows
         slug: scientific-workflows
         subsections:
           - title: "CarrierSeq Scientific Pipeline"
-            url: /SCI-F/pages/examples.html#carrierseq-scientific
+            url: /SCI-F/examples.html#carrierseq-scientific
             slug: carrierseq-scientific
           - title: "CarrierSeq Development Pipeline"
-            url: /SCI-F/pages/examples.html#carrierseq-development
+            url: /SCI-F/examples.html#carrierseq-development
             slug: carrierseq-development
           - title: "Singularity Scientific Example"
-            url: /SCI-F/pages/examples.html#singularity-scientific
+            url: /SCI-F/examples.html#singularity-scientific
             slug: singularity-scientific
 
   - title: Community
-    url: "/SCI-F/pages/community.html"
+    url: "/SCI-F/community.html"
     slug: community
     sections:
       - title: Intrastructure Overview
-        url: /SCI-F/pages/community.html#infrastructure
+        url: /SCI-F/community.html#infrastructure
         slug: infrastructure
       - title: Contributing
-        url: /SCI-F/pages/community.html#contributing
+        url: /SCI-F/community.html#contributing
         slug: contributing
       - title: Future Work
-        url: /SCI-F/pages/community.html#future
+        url: /SCI-F/community.html#future
         slug: future
 
   - title: Appendix
@@ -145,8 +145,8 @@
     slug: appendix
     sections:
       - title: Discussion
-        url: /SCI-F/pages/appendix.html#discussion
+        url: /SCI-F/appendix.html#discussion
         slug: discussion
       - title: Conclusion
-        url: /SCI-F/pages/appendix.html#conclusion
+        url: /SCI-F/appendix.html#conclusion
         slug: conclusion

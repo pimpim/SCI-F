@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Reproducible Practices
+pdf: true
+permalink: /practices
 ---
 
 # Practices
@@ -10,4 +12,4 @@ It is important to make the distinction between the reproducibility of an entire
  - For applications that must be portable outside of their initial container, users would be encouraged to include all dependency installs within the `%appinstall` section. If they were already installed during `%post`, the package would be found and skipped.
  - Installing an application into a container would check for OS compatibility. This can be done automatically by storing information about the base OS with each application as a label. To encourage this practice, we have added a test and requirements of specifying one or more operating systems for any module contributed at <a href="https://containers-ftw.github.io/apps" target="_blank">https://containers-ftw.github.io/apps</a>. With these checks, we can have some confidence that the recipes for generating the apps are maximally portable.
 
-
+Modular internal contents combined with reproducible portable environments via Singularity containers is a starting point for practicing good science.

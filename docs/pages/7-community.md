@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Community Development
+pdf: true
+permalink: /community
 ---
 
 # Community

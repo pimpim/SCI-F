@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Example Use Cases
+pdf: true
+permalink: /examples
 ---
 
 # Example Use Cases

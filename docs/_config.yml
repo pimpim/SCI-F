@@ -10,6 +10,9 @@ author:
   name:       Singularityware
   url:        https://containers-ftw.github.io/apps
 
+# SCI-F Version
+version: 0.0.1
+
 # Defaults
 defaults:
   -
