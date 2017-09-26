@@ -3,6 +3,7 @@ layout: default
 title: Structure of the Standard Container Integration Format
 pdf: true
 permalink: /structure
+toc: true
 ---
 
 # Structure of the Standard Container Integration Format

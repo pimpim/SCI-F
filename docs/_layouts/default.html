@@ -10,7 +10,9 @@
     <br><br><br>
     <section class="main-content">
       
+      {% if page.toc %}
       {% include toc.html %}
+      {% endif %}
       {{ content }}
       {% include page-footer.html %}
 

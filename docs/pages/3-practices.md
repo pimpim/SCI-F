@@ -3,6 +3,7 @@ layout: default
 title: Reproducible Practices
 pdf: true
 permalink: /practices
+toc: true
 ---
 
 # Practices

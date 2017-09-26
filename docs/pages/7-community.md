@@ -3,6 +3,7 @@ layout: default
 title: Community Development
 pdf: true
 permalink: /community
+toc: true
 ---
 
 # Community

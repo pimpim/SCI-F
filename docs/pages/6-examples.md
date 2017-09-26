@@ -3,6 +3,7 @@ layout: default
 title: Example Use Cases
 pdf: true
 permalink: /examples
+toc: true
 ---
 
 # Example Use Cases
@@ -241,8 +242,8 @@ singularity run --app sge analysis.img
 
 During the build process, if the resources are available, the researcher can measure metrics like memory needed and time, and then write them into the batch job. Runtime variables like queue and notification email could be provided via variables to the runscript.  This particular example for slurm and sge have been implemented.
 
- - [SLURM]()
- - [SGE]()
+ - [SLURM](http://containers-ftw.org/apps/scif/hpc/slurm/hpc-slurm-submit/)
+ - [SGE](http://containers-ftw.org/apps/scif/hpc/sge/hpc-sge-submit/)
 
 
 ## Scientific Workflows
@@ -407,8 +408,8 @@ These two images that serve equivalent software is a powerful example of the fle
 ### Singularity Scientific Example
 We adopted an original analysis to compare Singularity vs. Docker on different cloud and local environments  to give rationale for taking a SCI-F apps approach over a traditional Singularity image. We compare the following equivalent (but different!) implementations:
 
-- [Singularity without SCI-F]()
-- [Singularity with SCI-F]()
+- [Singularity without SCI-F](https://github.com/containers-ftw/scientific-example-ftw/blob/master/Singularity.noscif)
+- [Singularity with SCI-F](https://github.com/containers-ftw/scientific-example-ftw/blob/master/Singularity)
 
 The containers use the same software to perform the same functions, but notably, the software and executables are organized differently, and called differently. Singularity standard (the first without SCI-F) relies on external scripts and the container is a bit of a black box. Singularity with SCI-F has no external dependencies beyond data, and is organized according to SCI-F.
 

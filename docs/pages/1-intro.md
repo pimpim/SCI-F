@@ -3,6 +3,7 @@ layout: default
 title: Introduction
 pdf: true
 permalink: /intro
+toc: true
 ---
 
 # Introduction

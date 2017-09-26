@@ -3,6 +3,7 @@ layout: default
 title: Container Modules
 pdf: true
 permalink: /modules
+toc: true
 ---
 
 # Modules

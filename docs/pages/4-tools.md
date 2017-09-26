@@ -3,6 +3,7 @@ layout: default
 title: Integrations and Tools
 permalink: /tools
 pdf: true
+toc: true
 ---
 
 # Integrations and Tools
