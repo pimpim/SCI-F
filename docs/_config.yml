@@ -8,11 +8,16 @@ github:       "https://www.github.com/containers-ftw/SCI-F"
 # About/contact
 author:
   name:       Singularityware
-  url:        https://www.github.com/singularityware
+  url:        https://containers-ftw.github.io/apps
 
-# Gems
-gems:
-  - jekyll-paginate
+# Defaults
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
 
 #Others
 markdown: kramdown
