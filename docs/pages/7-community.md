@@ -45,7 +45,7 @@ There are so many ways to contribute! Here are just a few:
 
 
 ## Future Work
-SCI-F is exciting because it makes basic container development and usage easier. The user can immediately inspect and see the software a container provides, and how to use it. The user can install additional software, copy from one container to another, or view metadata and help documentation. The developer is provided guidance for how and where to install and configure software, but complete freedom with regard to the software itself. The minimum requirements for any package are a name for its folder, and then optionally a runscript and help document for the user.
+SCI-F is exciting because it makes basic container development and usage easier. The user can immediately inspect and see the software a container provides, and how to use it. The user can install additional software, copy from one container to another, or view metadata and help documentation. The developer is provided guidance for how and where to install and configure software, but complete freedom with regard to the software itself. The minimum requirements for any package are a name for its folder, and then optionally a runscript and help document for the user. In addition to these basic examples, we provide other future use cases that would be possible with the Standard Container Integration Format.
 
 
 ### Mapping of container landscape
