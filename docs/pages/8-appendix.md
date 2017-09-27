@@ -30,22 +30,21 @@ The Standard Container Integration Format is advantageous in that the container 
 
 ## List of (possibly) related standards,formats and initiatives
 
- - FHS: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
- - OCI: https://github.com/opencontainers/image-spec/blob/master/spec.md
- - CWL: http://commonwl.org
- - FAIR: https://www.force11.org/group/fairgroup/fairprinciples
- - (Opt.) OpenStand: https://open-stand.org
- - https://reproducible-builds.org/ 
- - DASPOS https://daspos.crc.nd.edu
- - TANGO http://tango-project.eu/
+ - FHS: <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard" target="_blank">https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard</a>
+ - OCI: <a href="https://github.com/opencontainers/image-spec/blob/master/spec.md" target="_blank">https://github.com/opencontainers/image-spec/blob/master/spec.md</a>
+ - CWL: <a href="http://commonwl.org" target="_blank">http://commonwl.org</a>
+ - FAIR: <a href="https://www.force11.org/group/fairgroup/fairprinciples" target="_blank">https://www.force11.org/group/fairgroup/fairprinciples</a>
+ - (Opt.) <a href="OpenStand: https://open-stand.org" target="_blank">OpenStand: https://open-stand.org</a>
+ - <a href="https://reproducible-builds.org/" target="_blank">https://reproducible-builds.org/</a>
+ - DASPOS: <a href="https://daspos.crc.nd.edu<" target="_blank">https://daspos.crc.nd.edu</a>
+ - TANGO: <a href="http://tango-project.eu/" target="_blank">http://tango-project.eu/</a>
 
 ## Additional reading material
 
- - https://indico.esrf.fr/indico/event/6/session/2/contribution/3/material/slides/
- - https://indico.cern.ch/event/567550/contributions/2656689/
- - https://github.com/TANGO-Project/alde#application-lifecycle-deployment-engine-alde
- - https://figshare.com/articles/Orchestration_and_Workflows_in_eScience_Problems_Standards_and_Solutions/4746931
-
+ - <a href="https://indico.esrf.fr/indico/event/6/session/2/contribution/3/material/slides/" target="_blank">https://indico.esrf.fr/indico/event/6/session/2/contribution/3/material/slides/</a>
+ - <a href="https://indico.cern.ch/event/567550/contributions/2656689/" target="_blank">https://indico.cern.ch/event/567550/contributions/2656689/</a>
+ - <a href="https://github.com/TANGO-Project/alde#application-lifecycle-deployment-engine-alde" target="_blank">https://github.com/TANGO-Project/alde#application-lifecycle-deployment-engine-alde</a>
+ - <a href="https://figshare.com/articles/Orchestration_and_Workflows_in_eScience_Problems_Standards_and_Solutions/4746931" target="_blank">https://figshare.com/articles/Orchestration_and_Workflows_in_eScience_Problems_Standards_and_Solutions/4746931</a>
 
 <div>
     <a href="/SCI-F/community.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
