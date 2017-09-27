@@ -8,6 +8,11 @@ toc: true
 
 # Appendix
 
+In summary, SCI-F is useful because it allows for:
+
+ - [flexible, internal modularity](/SCI-F/modularity.html): The definition of modularity is entirely based on the needs of the creator and user, and the resulting container reflects that.
+
+
 ## Discussion
 This discussion would not be complete without a mention for external modules or dependencies that are required by the software. For example, pip is a package manager that installs to some python base. Two equivalent python installations with different submodules are, by definition, different. There are two possible choices to take, and we leave this choice up to the generator of the container.
 

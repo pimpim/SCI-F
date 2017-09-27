@@ -6,16 +6,18 @@ permalink: /examples
 toc: true
 ---
 
-# Example Use Cases
+## Example Use Cases
 
 SCI-F is powerful in that it supports multiple general use cases for scientific and systems evaluation and high level introspection. These use cases broadly fall in the areas of providing modular software, systems and metric evaluation, and guided collaboration to answer a scientific question. 
 
 
-## Modular Software Evaluation
-A common question pertains to evaluation of different solutions toward a common goal. An individual might ask “How does implementation “A" compare to implementation “B" as evaluated by one or more metrics?" For a systems admin, the metric might pertain to running times, resource usage, or efficiency. For a researcher, he or she might be interested in looking at variability (or consistency) of outputs. Importantly, it should be possible to give a container serving such a purpose to a third party that does not know locations of executables, or environment variables to load, and the container runs equivalently. SCI-F allows for this by way of providing modular software applications, each corresponding to a custom environment, libraries, and potentially files.
+### Modular Software Evaluation
 
-### Method
-To demonstrate this use case, we developed a container that implements the most basic function for a program, a print to the console, for each of 19 different languages (R, awk, bash, c, cat, chapel, clisp, cpp, csh, go, julia, octave, perl, python, ruby, rust, tcsh, zsh). The container is designed as a means to collect a series of metrics relative to timing and system resources for each language. The metrics pertain to system resources provided by the time (time(1) - Linux manual page ) and strace (strace(1): trace system calls/signals...) utilities. We will refer to this container generally as “hello-world." A user that did not create the container could ask it for global help:
+A common question pertains to evaluation of different solutions toward a common goal. An individual might ask "How does implementation **A** compare to implementation **B** as evaluated by one or more metrics?" For a systems admin, the metric might pertain to running times, resource usage, or efficiency. For a researcher, he or she might be interested in looking at variability (or consistency) of outputs. Importantly, it should be possible to give a container serving such a purpose to a third party that does not know locations of executables, or environment variables to load, and the container runs equivalently. SCI-F allows for this by way of providing modular software applications, each corresponding to custom environments, libraries, and potentially files.
+
+#### Method
+
+To demonstrate this use case, we developed a container that implements the most basic function for a program, a print to the console, for each of 19 different languages (*R*, *awk*, *bash*, *c*, *cat*, *chapel*, *clisp*, *cpp*, *csh*, *go*, *julia*, *octave*, *perl*, *python*, *ruby*, *rust*, *tcsh*, *zsh*). The container is designed as a means to collect a series of metrics relative to timing and system resources for each language. The metrics pertain to system resources provided by the <a href="https://linux.die.net/man/1/time" target="_blank">time</a> and <a href="https://linux.die.net/man/1/strace" target="_blank">strace</a> utilities. We will refer to this container generally as "hello-world." A user that did not create the container could ask it for global help:
 
 ```
 $ singularity help container.img
@@ -48,76 +50,83 @@ Or run any particular language:
 ```
 $ singularity run --app bash container.img
 RaawwWWWWWRRRR!!
+```
 
-Importantly, in the example above, using “run" for the application “bash" handles loading environment variables, adding the application folders to the path, and executing the associated runscript. The application also optionally can serve its own labels, environment metadata, and specifics about its size with the “inspect" command:
+Importantly, in the example above, using "run" for the application *bash* handles loading environment variables, adding the application folders to the path, and executing the associated runscript. The application also optionally can serve its own labels, environment metadata, and specifics about its size with the "inspect" command:
 singularity inspect --app bash container.img
 
+```
 {
     "SINGULARITY_APP_NAME": "bash",
     "SINGULARITY_APP_SIZE": "1MB"
 }
 ```
 Therefore, the metric evaluation could be run, across modules, without knowing the applications installed with a simple for loop.
+
 ```
 for app in $(singularity apps container.img)
     do
     singularity run --app $app container.img
 done
+
 ```
 In the case of metric evaluation, it would be up to the implementor to decide to evaluate the software internally (above) or externally. For example, an external evaluation might look like the following:
+
 ```
 for app in $(singularity apps container.img)
     do
     /usr/bin/time -a singularity run --app $app container.img
 done
 ```
-In practice, for general metrics like timing and host resources, if the container does not provide an app to measure time internally (e.g., an internal app) it is reasonable to perform tests externally, as the containers themselves can be agnostic to the tests. For tests that look at system calls (e.g., strace as in the example above) calling externally would mean needing to properly account for the call to the singularity software itself in the results.
 
-### Results
-To demonstrate the value of using SCI-F containers, we ran a simple function to print to the command line in 19 languages, and were able to run the analysis in entirety without knowing the specific commands for each language. The resulting table of features pertaining to times and resources (Supplementary Table 1) demonstrates a wide span of differences between the seemingly identical calls. A principle component analysis (PCA) of these features shows distinct groups (Figure 1)
+In practice, for general metrics like timing and host resources, if the container does not provide an app to measure time internally (e.g., an internal app to perform the same call with the "time" executable inside the container), given that the time for Singularity to execute this internal command is trivial or accounted for, it is reasonable to perform tests externally. External tests are advantageous in that containers themselves can be agnostic to the tests - a container does not need to be developed with the internal dependencies to perform any specific test. For tests that look at system calls (e.g., strace as in the example above) calling externally would mean needing to properly account for the call to the singularity software itself in the results.
 
-[ insert Figure here ]
+#### Results
 
-Closer inspection reveals facts about the programs that are common knowledge: 
- 
-[ WRITE ABOUT HERE]
+To demonstrate the value of using SCI-F containers, we ran a simple function to print to the command line in 19 languages, and were able to run the analysis in entirety without knowing the specific commands for each language. The resulting table of features pertaining to times (<a href="https://github.com/containers-ftw/hello-world-ftw/blob/master/logs/language-times.tsv" target="_blank"> Supplementary Table 1</a>) and features (<a href="https://github.com/containers-ftw/hello-world-ftw/blob/master/logs/language-features.tsv" target="_blank">Supplementary Table 2</a>) demonstrates a wide span of differences between the seemingly identical calls. For example, Figure 1 shows the differences in "read calls," or the number of read commands to the filesystem issued when the simple "Hello World" command was run: 
 
-Full results are available in <a target="_blank" href="https://github.com/containers-ftw/hello-world-ftw/blob/master/logs/languages_metrics.ipynb">this notebook</a>.
+<img src="/SCI-F/img/read_calls.png" width="50%"/>
 
-## Modular Metrics Evaluation
+Closer inspection reveals facts about the programs that are common knowledge, such as shell programs having faster start up times than more substantial programs (e.g., *octave*, *R*, or *python*). In fact, the basic differences between start times, reads and writes, and memory usage across this simple execution is surprising, and gives strong support for why scientific results can vary depending on the underlying architecture. It gives even stronger rationale for being able to assess the metadata about the software to reveal cause for the observed differences. Full results and additional analyses are available in <a target="_blank" href="https://github.com/containers-ftw/hello-world-ftw/blob/master/logs/languages_metrics.ipynb">this notebook</a>.
+
+### Modular Metrics Evaluation
 For this next use case, a scientist is interested in running a series of metrics over an analysis of interest (the container’s main function, executed by it’s primary runscript).  He has been given a container with a runscript, and several installed supporting metrics (SCI-F apps also in the container), and knows nothing beyond that. 
 
-Each installed SCI-F app can be thought of as a particular context to evoke the container's main runscript, and the apps themselves are relatively agnostic to the runscript itself. Importantly, using the image for its intended purpose is not impacted by the presence of these supporting tools. The command to run the image is unchanged. When the scientist runs the image, he sees it perform it’s primary function, a print of “Hello World!" to the console.
+Each installed SCI-F app can be thought of as a particular context to evoke the container's main runscript, and the apps themselves are relatively agnostic to the runscript itself. Importantly, using the image for its intended purpose is not impacted by the presence of these supporting tools. The command to run the image is unchanged. When the scientist runs the image, he sees it perform it’s primary function, a print of "Hello World!" to the console.
 
 ```
-singularity run metrics.img 
+$ singularity run metrics.img 
 Hello-World!
 ```
 
 At this point, the scientist doesn’t know what the metrics are, or the particular environment or locations in the container. Given that the container has SCI-F, the scientist can ask the container to tell him what metrics are installed:
 
 ```
- singularity apps metrics.img 
+$ singularity apps metrics.img 
 custom
 linter
 parallel
 strace
 time
 ```
+
 And then run the metric easily by simply specifying it’s name:
+
 ```
 singularity run --app time metrics.img
 ```
-or even writing the previous command into a loop:
+
+or even writing the previous command into a loop to run all internal apps, without knowing what they are named:
+
 ```
 for app in $(singularity apps metrics.img)
    do
       singularity run --app $app metrics.img
 done
 ```
-This particular container has several metrics to assess usage and timing of different resources (time), a complete trace of the call (strace), an example custom metric (custom), a static linter (linter), and a function to run the container’s runscript in parallel (parallel). Each of these SCI-F apps serves as an example use case that is discussed in the following sections.
+This particular container has several metrics to assess usage and timing of different resources (*time*), a complete trace of the call (*strace*), an example custom metric (*custom*), a static linter (*linter*), and a function to run the container’s runscript in parallel (*parallel*). Each of these SCI-F apps serves as an example use case that is discussed in the following sections.
 
-### Metric Example 1: Evaluate software across different metrics
+#### Metric Example 1: Evaluate software across different metrics
 A system admin or researcher concerned about evaluation of different software
 could add relevant metrics apps to the software containers, and then easily evaluate
 each one with the equivalent command to the container. Importantly, since each
@@ -135,9 +144,9 @@ a table that assesses the runscript:
 
 ```
  singularity run --app strace metrics.img 
-Hello-World!
-% time     seconds  usecs/call     calls    errors syscall
------- ----------- ----------- --------- --------- ----------------
+ Hello-World!
+ % time     seconds  usecs/call     calls    errors syscall
+ ------ ----------- ----------- --------- --------- ----------------
   0.00    0.000000           0        15           read
   0.00    0.000000           0         1           write
   0.00    0.000000           0        35        24 open
@@ -159,21 +168,22 @@ Hello-World!
   0.00    0.000000           0         2           arch_prctl
   0.00    0.000000           0         1           openat
   0.00    0.000000           0         1           faccessat
------- ----------- ----------- --------- --------- ----------------
-100.00    0.000000                   176        42 total
+ ------ ----------- ----------- --------- --------- ----------------
+ 100.00    0.000000                   176        42 total
 ```
 
 Regardless of what the runscript does, this SCI-F app will provide a consistent way 
-to produce this metric. Any user that added the small module to his or her container would immediately have this assessment for the software provided by the container.
+to produce this metric. Any user that added the small module to his or her container would immediately have this assessment for the software provided by his or her container. The recipe for this *strace* app is provided at the <a href="http://containers-ftw.org/apps/scif/metrics/bash/metrics-bash-strace/" target="_blank">containers-ftw apps portal</a>, discussed later in this document.
 
-### Metric Example 2: Custom Functions and Metrics
+
+#### Metric Example 2: Custom Functions and Metrics
 When a container is intended to only perform one function, this maps nicely to having a single runscript. As the number of possible functions increase, however, the user is forced to either:
 
  - have a runscript that can take command line options to call different executables
  - use the `exec` command with some known path (to the user)
 
 SCI-F apps allow for an easy way to define custom helper metrics or functions for
-the container without needing to write a complicated script or know the locations of executables in a container that was built by another. The app “custom" is an example of this, as it generates a fortune with a bit of surprise added:
+the container without needing to write a complicated script or know the locations of executables in a container that was built by another. The app below, also <a href="http://containers-ftw.org/apps/scif/fun/fun-cow-fortune/" target="_blank">provided at the portal</a> is an example of this, as it generates a fortune with a bit of surprise added:
 
 ```
 singularity run --app custom metrics.img
@@ -191,9 +201,10 @@ difference between lightning and the lightning bug.
 
 Although this particular example is comical, the larger idea that individuals can specialize in general modules for assessing containers is a powerful one.
 
-### Metric Example 3: Code Quality and Linting
+
+#### Metric Example 3: Code Quality and Linting
 A SCI-F app can meet the needs to serve as a linter over a set of files,
-or general tests. The example is provided here with the SCI-F app “linter," which runs a linter over a script. 
+or general tests. The example is provided here with a SCI-F app "linter," which runs a linter over a script. 
 
 ```
 singularity run --app linter metrics.img 
@@ -213,7 +224,8 @@ grep -qi hq.*mp3  && echo -e 'Foo  bar'; done
 
 This example used a file provided in the container, but a linter app could also accept a command line argument to a file or folder. During building, we advise the researcher to still use the `%test` section to evaluate the outcome of the build process, and to use SCI-F apps for general tests that are generalizable to other containers.
 
-### Metric Example 4: Runtime Evaluation
+
+#### Metric Example 4: Runtime Evaluation
 In that a metric can call a runscript, it could be easy to evaluate running the main analysis under various levels or conditions. As a simple proof of concept, here we are creating an app to execute the same exact script in parallel.
 
 ```
@@ -227,12 +239,11 @@ Hello World!
 Hello World!
 ```
 
-And you might imagine a similar loop to run an analysis, and modify a runtime
-or system variable for each loop, and save the output (or print to console). 
+And you might imagine a similar loop to run an analysis, and modify a runtime or system variable for each loop, and save or print the output to the console.
 
-This metrics implementation is available for use and documentation provided in entirety at https://github.com/containers-ftw/metrics-ftw.
+This metrics implementation is available for use at <a href="https://github.com/containers-ftw/metrics-ftw" target="_blank">https://github.com/containers-ftw/metrics-ftw</a> and complete description and documentation at <a href="http://containers-ftw.org/apps/examples/metrics/metrics-ftw" target="_blank">http://containers-ftw.org/apps/examples/metrics/metrics-ftw</a>.
 
-## Contextual Running
+### Contextual Running
 It’s often common that a user will want to run a container in different environments, or using different job managers. For example, a scientific analysis run locally would come down to executing the script, but run on a cluster would come down to submission of a job to a SLURM or SGE cluster. In this case, a scientist could distribute the image with easy entry points to each of these use cases:
 
 ```
@@ -245,17 +256,19 @@ During the build process, if the resources are available, the researcher can mea
  - [SLURM](http://containers-ftw.org/apps/scif/hpc/slurm/hpc-slurm-submit/)
  - [SGE](http://containers-ftw.org/apps/scif/hpc/sge/hpc-sge-submit/)
 
+If a cluster builds and provides containers for the users, the cluster could build the container in each environment, and then provide its own submission script for optimal resource usage.
 
-## Scientific Workflows
+
+### Scientific Workflows
 The scientist is likely to want to use SCI-F apps for two purposes:
 
 - to provide development containers that expose software to develop pipelines
 - to provide a production container alongside a publication to serve a final pipeline 
 
-SCI-F can meet both of these goals, and for this example, we have implemented the equivalent pipeline using Singularity and SCI-F for the CarrierSeq workflow (Mojarro et al. 2017), as well as adding SCI-F to a previously done variant calling analysis that used Singularity and Docker . Each of the two example containers provides modular access to the different software inside. By way of using the Standard Container Integration Format (SCI-F), we have a lot of freedom in deciding on what level of functions we want to expose to the user. A developer will want easy access to the core tools (e.g., bwa, seqtk) while a user likely wants one level up, on the level of a collection of steps associated with some task (e.g., mapping).
+SCI-F can meet both of these goals, and for this example, we have implemented the equivalent pipeline using Singularity and SCI-F for the CarrierSeq workflow (<a href="https://www.biorxiv.org/content/early/2017/08/18/175281" target="_blank">Mojarro et al. 2017</a>), as well as adding SCI-F to a previously done variant calling analysis that used Singularity and Docker . Each of the two example containers provides modular access to the different software inside. By way of using the Standard Container Integration Format (SCI-F), we have a lot of freedom in deciding on what level of functions we want to expose to the user. A developer will want easy access to the core tools (e.g., bwa, seqtk) while a user likely wants one level up, on the level of a collection of steps associated with some task (e.g., mapping).
 
-### Carrierseq Scientific Pipeline
-For this example, we focus on the build recipe that generates a scientific container to perform (optionally) a download of input data, a mapping, statistical (poisson) and sorting procedure. We assume that an interested party has found the container “carrierseq.img", has Singularity installed, and is curious about how to use it. The individual could first ask for help directly from the container.
+#### Carrierseq Scientific Pipeline
+For this example, we focus on the build recipe that generates a scientific container to perform (optionally) a download of input data, a mapping, statistical (poisson) and sorting procedure. We assume that an interested party has found the container "carrierseq.img", has Singularity installed, and is curious about how to use it. The individual could first ask for help directly from the container.
 
 ```
 singularity help carrierseq.img
@@ -278,24 +291,28 @@ If we follow the instruction, we find the container has an APP that serves only 
 ```
 singularity run --app readme carrierseq.img | less
 
-# CarrierSeq
-
-## About
+#### CarrierSeq
+#### About
 
 bioRxiv doi: https://doi.org/10.1101/175281
 
-CarrierSeq is a sequence analysis workflow for low-input nanopore sequencing which employs a genomic carrier.
+CarrierSeq is a sequence analysis workflow for low-input nanopore
+            sequencing which employs a genomic carrier.
 
-Github Contributors: Angel Mojarro (@amojarro), Srinivasa Aditya Bhattaru (@sbhattaru), Christopher E. Carr (@CarrCE), and Vanessa Sochat (@vsoch).</br> 
+           Github Contributors: Angel Mojarro (@amojarro), 
+                                Srinivasa Aditya Bhattaru (@sbhattaru), 
+                                Christopher E. Carr (@CarrCE), 
+                                and Vanessa Sochat (@vsoch).
+ 
 fastq-filter from: https://github.com/nanoporetech/fastq-filter
 
-.......etc
+[MORE]
 ```
 
-Metadata in the way of labels, environment, help, and the runscript and build recipes themselves are available for the whole conatiner in either a json or human readable format via the --inspect command:
+Metadata in the way of labels, environment, help, and the runscript and build recipes themselves are available for the whole conatiner in either a json or human readable format via the `--inspect` command:
 
 ```
-singularity inspect carrierseq.img 
+$ singularity inspect carrierseq.img 
 {
     "org.label-schema.usage.singularity.deffile.bootstrap": "docker",
     "org.label-schema.usage.singularity.deffile": "Singularity",
@@ -309,10 +326,11 @@ singularity inspect carrierseq.img
     "org.label-schema.build-size": "1419MB"
 }
 ```
+
 And also available on the level of individuals apps:
 
 ```
-singularity inspect --app mapping carrierseq.img
+$ singularity inspect --app mapping carrierseq.img
 {
     "FQTRIM_VERSION": "v0.9.5",
     "SEQTK_VERSION": "v1.2",
@@ -325,27 +343,29 @@ singularity inspect --app mapping carrierseq.img
 All apps are exposed to the user:
 
 ```
-singularity apps carrierseq.img
+$ singularity apps carrierseq.img
 mapping
 poisson
 readme
 sorting
-sra-tooklit
+download
 ```
+
 And then we can ask for help for any of the pipeline steps:
+
 ```
 singularity help --app mapping carrierseq.img
 singularity help --app poisson carrierseq.img
 singularity help --app sorting carrierseq.img
 ```
 
-The entire set of steps for running the pipeline provided by the container come down to calling the different apps. As an overall strategy, since the data is rather large, we are going to map a folder to the container’s data base where the analysis is to run. This directory, just like the modular applications, has a known and predictable location. So our steps are going to look like this:
+The entire set of steps for running the pipeline provided by the container come down to calling the different apps. As an overall strategy, since the data is rather large, we are going to map a folder to the container's data base where the analysis is to run. This directory, just like the modular applications, has a known and predictable location. So our steps are going to look like this:
 
- 0. Make an empty random folder to bind to for data, download the data to it (this could represent a large data folder in a scratch folder on a cluster)
- 1. For subsequent commands, map the data base in the container to the local machine
+ 0. Download data to a host folder
+ 1. For subsequent commands, map `/scif/data` to the host folder
  2. Perform mapping step of pipeline
  3. Perform poisson regression on filtered reads
- 4. Finally, sort results
+ 4. Sort the results
 
 And the calls to the container to support this would be:
 
@@ -368,6 +388,7 @@ singularity run --app mapping --bind data:/scif/data another-container.img
 singularity run --app poisson --bind data:/scif/data carrierseq.img
 singularity run --app sorting --bind data:/scif/data carrierseq.img
 ```
+
 Or a researcher that is incredibly interested in variations of one step (e.g., sorting) could provide an entire container just to serve those variations:
 
 ```
@@ -375,14 +396,21 @@ singularity run --app quicksort --bind data:/scif/data sorting.img
 singularity run --app mergesort --bind data:/scif/data sorting.img
 ```
 
-Note that while the examples above serve different components that might be run by some workflow manager, SCI-F itself is not such an external manager. Rather, SCI-F provides a standard set of commands that would integrate into such a manager. For basic pipelines, and containers that are developed to look for input from the previous step in an expected place, a workflow manager would arguably not needed. While many scientists are comfortable using orchestration of workflows, others are not, and SCI-F works for both cases.
+Importantly, if we want to understand metadata or container contents relevant to a specific step, this information is represented in the build recipe (provided inside the container), and in the organization of the filesystem itself. We want to reiterate that While the examples above serve different components that might be run by some workflow manager, SCI-F itself is not such an external manager. Rather, SCI-F provides a standard set of commands that would integrate into such a manager. For basic pipelines, and containers that are developed to look for input from the previous step in an expected place, a workflow manager would arguably not needed. While many scientists are comfortable using orchestration of workflows, others are not, and SCI-F works for both cases.
 
-As most workflow components are a carefully chosen set of commands, the container exposes enough metadata to run various steps of the pipeline. For this use case, knowing the specifics of each command call or path within the container would not be useful, and might even be a detriment if it confuses the user. In the above, I can direct the container to my mapped input directory and specify a step in the pipeline, and I don’t need to understand how to use bwa or grep or seqtk, or any of the other software that makes up each. This is a very different use case from a scientific developer’s, discussed next.
+As most workflow components are a carefully chosen set of commands, the container exposes enough metadata to run various steps of the pipeline. The creator of the container has carefully crafted these commands to be specific to his work. For the user, however, knowing the specifics of each command call or path within the container is not so useful for using it. In fact, it might even be a detriment if it confuses the user. This is a very different use case from a scientific developer’s, discussed next.
 
-### Carrierseq Development Container
-The developer has a different use case - to have easy command line access to the lowest level of executables installed in the container. Given a global install of all software, without SCI-F I would need to look at $PATH to see what has been added to the path, and then list executables in path locations to find new software installed to, for example, `/usr/bin`. There is no way to easily and programmatically "sniff" a container to understand the changes. The container is a black development box, perhaps only understood by the creator or with careful inspection of the build recipe. We would do well to create a development container with SCI-F, and have created a build recipe that does exactly this.
+#### Carrierseq Development Container
 
-Now, instead of serving software on the level of the pipeline, we reveal the core software and tools that can be combined in specific ways to produce a pipeline step like "mapping."
+The developer has a different use case - to have easy command line access to the lowest level of executables installed in the container. Given a global install of all software, without SCI-F I would need to look at `$PATH` to see what has been added to the path, and then list executables in path locations to find new software installed to, for example, `/usr/bin`. I could only assume that the creator of the container thought ahead to add these important executables to the path at all. Unfortunately, there is no way to easily and programmatically "sniff" a container to understand what changes were made, and what tools are available for development. A container created by developer *Sam* is likely not going to be understood by developer *Stan*.
+
+
+<img src="/SCI-F/img/robot30.png" width="50%">
+
+
+The container is a black development box, perhaps only understood by the creator or with careful inspection of the build recipe. We would do well to create a development container with SCI-F, and for this discussion, have created a build recipe that does exactly this.
+
+Still working with CarrierSeq, instead of serving software on the level of the pipeline, we reveal the core software and tools that can be combined in specific ways to produce a pipeline step like "mapping."
 
 ```
 singularity apps carrierseq.dev.img
@@ -393,8 +421,9 @@ seqtk
 sra-toolkit
 ```
 
-Each of the above apps can be used with commands “run", “exec," “inspect," “shell," or “test" to run the container in context of a particular app. This means sourcing app-specific environment variables, and adding executables associated with the app to the path. For example, I can use a simple app “python" to open the python interpreter in the container, or shell into the container to test bwa:
+Each of the above apps can be used with commands "run", "exec," "inspect," "shell," or "test" to run the container in context of a particular app. This means sourcing app-specific environment variables, and adding executables associated with the app to the path. For example, I can use a simple app "python" to open the python interpreter in the container, or shell into the container to test bwa:
 
+```
 ##### Open interactive python
 singularity run --app python carrierseq.dev.img
 
@@ -402,8 +431,14 @@ singularity run --app python carrierseq.dev.img
 $ singularity shell --app bwa carrierseq.dev.img
 $ which bwa
 $ /scif/apps/bwa/bin/bwa
+```
 
-These two images that serve equivalent software is a powerful example of the flexibility of SCI-F. The container creator can choose the level of detail to expose to a user that doesn't know how it was created, or perhaps has varying levels of expertise. A lab that is using core tools for working with sequence data might have preference for the development container, while a finalized pipeline distributed with a publication would have preference for the first. In both cases, the creator doesn't need to write custom scripts for a container to run a particular app, or to expose environment variables, tests, or labels. By way of using SCI-F, this happens automatically. 
+These two images, serving equivalent software, but enabling very different use cases, are good example of the flexibility of SCI-F. 
+
+>> The container creator can choose the level of detail to expose to a user that doesn't know how it was created.
+
+A lab that is using core tools for working with sequence data might have preference for the development container, while a finalized pipeline distributed with a publication would have preference for the first. In both cases, the creator doesn't need to write custom scripts for a container to run a particular app, or to expose environment variables, tests, or labels. 
+
 
 ### Singularity Scientific Example
 We adopted an original analysis to compare Singularity vs. Docker on different cloud and local environments  to give rationale for taking a SCI-F apps approach over a traditional Singularity image. We compare the following equivalent (but different!) implementations:
@@ -485,9 +520,9 @@ In fact, the `art` tools are installed with the same manager (`brew`), but they 
 With SCI-F, by simply defining an environment, labels, install, or runscript to be in the context of an app, the modularity is automatically generated. When I add a list of files to an app `foo`, I know they are added to the container's predictable location for `foo`. If I add a file to `bin` I know it goes into foo's bin, and is added to the path when `foo` is run. If I add a library to `lib`, I know it is added to `LD_LIBRARY_PATH` when foo is run. I don't need to worry about equivalently named files under different apps getting mixed up, or being called incorrectly because both are on the path.  For example, in writing these sections, a developer can make it clear that `bwa` and `samtools` are used together for alignment:
 
 ```
-# =======================
-# bwa index and align
-# =======================
+#### =======================
+#### bwa index and align
+#### =======================
 
 %appinstall bwa-index-align
     git clone https://github.com/lh3/bwa.git build
@@ -513,9 +548,9 @@ With SCI-F, by simply defining an environment, labels, install, or runscript to 
 and that `art` is used to simulate reads:
 
 ```
-# =======================
-# simulate reads
-# =======================
+#### =======================
+#### simulate reads
+#### =======================
 
 %apphelp simulate-reads
     Optionally set any of the following environment variables (defaults shown)
@@ -861,12 +896,25 @@ For Singularity standard, you **can** ask a container for help, but it's a singl
 For SCI-F apps, you can define help sections for all of the functions that your container serves, along with a global help.
 
 
-### 3. Research Evaluation
+#### 3. Research Evaluation
 An important attribute of having modular software apps is that it allows for separation of files and executables for research, and those that belong to the base system. From a machine learning standpoint, it provides labels for some subset of content in the container that might be used to better understand how different software relates to a pipeline. Minimally, it separates important content from the base, allowing, for example, a recursive tree generated at `/scif` to capture a large majority of additions to the container. Or simple parsing of the build recipe to see what software (possibly outside of this location) was intended for each app. Equally important, having container software installed at a global at `%post` also says important things about it - that it perhaps is important for more than one software module, or is more of a system library.
 
 
-## Auditing and Logging
-A systems administration that builds and provides containers for his or her users might want to enforce running with a standard for logging and auditing. Instead of asking the researcher to write this into his or her custom runscript, the snippet to perform the logging could be added as a SCI-F app dynamically at build time, and then the container run with this context.
+### Working Environments
+SCI-F has a very interesting use case when it comes to working environments. Each app defined in a container can be thought of as running the container under a different context. For example, perhaps a different python base is being used, or a different `LD_LIBRARY_PATH`, or environmet variables exposed for a particular kind of data analysis. To start this discussion, think of all the different ways an app that can be executed can be defined using SCI-F. All of the different options below will result in the same result when running the container in context of an app (e.g., `singularity run --app foo container.img`):
+
+ - A set of commands added to `%apprun`
+ - A single file added to the app via `%appfiles`, and then executed in `%apprun`
+ - A software module installed with package managers in `%appinstall`, and then executed in `%apprun`
+
+Now we can imagine that the execution of some command is not the goal of the container, but rather providing a particular environment. The  minimum required for an app can be the definition of any section, so we don't need to define a runscript (`%apprun` section) to meet this goal. A container that is intended as a "working container" might simply be a set of `%appenv` sections to define different named environments. Without any other section, the user is then able to interact with the custom, named environments.
+
+```
+singularity shell --app tensorflow-gpu container.img
+```
+
+### Auditing and Logging
+Although we do not delve into this use case, it should be noted that SCI-F apps can provide logging and auditing for containers. A systems administration that builds and provides containers for his or her users might want to enforce running with a standard for logging and auditing. Instead of asking the researcher to write this into his or her custom runscript, the snippet to perform the logging could be added as a SCI-F app dynamically at build time, and then the container run with this context.
 
 <div>
     <a href="/SCI-F/structure.html"><button class="previous-button btn btn-primary"><i class="fa fa-chevron-left"></i> </button></a>
