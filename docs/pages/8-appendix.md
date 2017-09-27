@@ -10,7 +10,7 @@ toc: true
 
 In summary, SCI-F is useful because it allows for:
 
- - [flexible, internal modularity](/SCI-F/modularity.html) where the definition of modularity is entirely based on the needs of the creator and user, and the resulting container reflects that.
+ - [flexible, internal modularity](/SCI-F/modules.html) where the definition of modularity is entirely based on the needs of the creator and user, and the resulting container reflects that.
  - [reproducible practices](/SCI-F/practices.html) by way of providing portable environments with modular internal contents that are easily discovered.
  - [integration with external tools](/SCI-F/tools.html) by way of programmatic accessibility to internal modules.
  - [predictable internal structure](/SCI-F/structure.html) that distinguishes scientific content from the operating system base.
