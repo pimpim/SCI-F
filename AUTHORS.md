@@ -14,3 +14,4 @@
     - Pim Schravendijk <p.schravendijk@rijkzwaan.nl>
     - Paolo D. Tommasso <paolo.ditommaso@gmail.com>
     - Victor sv
+    - Alain Domissy <alain.domissy@gmail.com>
