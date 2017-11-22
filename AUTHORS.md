@@ -13,5 +13,5 @@
     - Satra Ghosh <satra@mit.edu>
     - Pim Schravendijk <p.schravendijk@rijkzwaan.nl>
     - Paolo D. Tommasso <paolo.ditommaso@gmail.com>
-    - Victor sv
+    - Victor Sande Veiga <victorsv@gmail.com>
     - Alain Domissy <alaindomissy@gmail.com>
